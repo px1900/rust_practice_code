@@ -1,0 +1,1 @@
+/Users/rainman/github/rust_practice_code/comprehensive_rust/day2_morning/exercise1/target/debug/exercise1: /Users/rainman/github/rust_practice_code/comprehensive_rust/day2_morning/exercise1/src/main.rs

@@ -1,0 +1,1 @@
+/Users/rainman/github/rust_practice_code/comprehensive_rust/day2_morning/lifetimes/target/debug/lifetimes: /Users/rainman/github/rust_practice_code/comprehensive_rust/day2_morning/lifetimes/src/main.rs
