@@ -1,11 +1,13 @@
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+
 pub struct Point {
     x: i32,
     y: i32,
 }
 
 impl Point {
-    fn magitude(&self) -> f64 {
-        (x*x + y*y) ^ 0.5
+    fn magnitude(&self) -> f64 {
+        f64::from(self.x*self.x + self.y*self.y).sqrt()
     }
     fn new(x: i32, y: i32) -> Point {
         Point {
@@ -13,35 +15,63 @@ impl Point {
             y: y,
         }
     }
-    fn dist(&self, other: &Point) -> f64 {
-        ((self.x - other.x)^2 + (self.y - other.y)^2) ^ 0.5
-    }
-    fn add(&mut self, other: &Point) {
-        self.x += other.x;
-        self.y += other.y;
+    fn dist(&self, other: Point) -> f64 {
+        f64::from((self.x - other.x).pow(2) + (self.y - other.y).pow(2)).sqrt()
     }
 }
+
+impl std::ops::Add for Point {
+    type Output = Point;
+    fn add(self, other: Point) -> Point {
+        Point {
+            x: self.x + other.x,
+            y: self.y + other.y,
+        }
+    }
+}
+
+impl std::ops::Sub for Point {
+    type Output = Point;
+    fn sub(self, other: Point) -> Point {
+        Point {
+            x: self.x - other.x,
+            y: self.y - other.y,
+        }
+    }
+}
+
+
 
 pub struct Polygon {
     points: Vec<Point>,
 }
 
 impl Polygon {
+    fn new() -> Polygon {
+        Polygon {
+            points: Vec::new(),
+        }
+    }
+
+    fn iter(&self) -> impl Iterator<Item = &Point> {
+        self.points.iter()
+    }
+
     fn add_point(&mut self, point: Point) {
         self.points.push(point);
     }
 
-    fn left_most_point(&self) -> Option<&Point> {
-        let mut left_most_point: Option<&Point> = None;
-        if self.points.size() == 0 {
+    fn left_most_point(&self) -> Option<Point> {
+        let mut left_most_point: Option<Point> = None;
+        if self.points.iter().len() == 0 {
             return left_most_point;
         }
         let mut left_most_x = self.points[0].x;
-        left_most_point = Some(&self.points[0]);
+        left_most_point = Some(self.points[0]);
         for point in &self.points {
             if point.x < left_most_x {
                 left_most_x = point.x;
-                left_most_point = Some(point);
+                left_most_point = Some(*point);
             }
         }
         left_most_point
@@ -51,29 +81,29 @@ impl Polygon {
         let mut perimeters = 0.0;
         let mut prev_point = &self.points[0];
         for point in &self.points {
-            perimeters += prev_point.dist(point);
+            perimeters += prev_point.dist(*point);
             prev_point = point;
         }
-        perimeters += prev_point.dist(&self.points[0]);
+        perimeters += prev_point.dist(self.points[0]);
         perimeters
     }
 }
 
-impl Iterator for Polygon {
-    type Item = &Point;
-    fn next(&mut self) -> Option<&Point> {
-        self.points.pop()
-    }
-}
 
 pub struct Circle {
     center: Point,
-    radius: f64,
+    radius: i32,
 }
 
 impl Circle {
+    fn new(center: Point, radius: i32) -> Circle {
+        Circle {
+            center: center,
+            radius: radius,
+        }
+    }
     fn perimeter(&self) -> f64 {
-        2.0 * 3.1415926 * self.radius
+        2.0 * 3.1415926 * f64::from(self.radius)
     }
 
 
@@ -82,6 +112,27 @@ impl Circle {
 pub enum Shape {
     Polygon(Polygon),
     Circle(Circle),
+}
+
+impl From<Circle> for Shape {
+    fn from(circle: Circle) -> Shape {
+        Shape::Circle(circle)
+    }
+}
+
+impl From<Polygon> for Shape {
+    fn from(polygon: Polygon) -> Shape {
+        Shape::Polygon(polygon)
+    }
+}
+
+impl Shape {
+    fn perimeter(&self) -> f64 {
+        match self {
+            Shape::Polygon(polygon) => polygon.perimeters(),
+            Shape::Circle(circle) => circle.perimeter(),
+        }
+    }
 }
 
 #[cfg(test)]
