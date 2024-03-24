@@ -1,0 +1,1 @@
+/Users/rainman/github/rust_practice_code/rust_programming_language/sec10_lifetime/target/debug/sec10_lifetime: /Users/rainman/github/rust_practice_code/rust_programming_language/sec10_lifetime/src/main.rs
