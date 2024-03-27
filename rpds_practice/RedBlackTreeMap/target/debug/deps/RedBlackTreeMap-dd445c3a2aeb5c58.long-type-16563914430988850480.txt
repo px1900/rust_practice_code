@@ -1,0 +1,1 @@
+Map<RangeIterPtr<'_, &str, {integer}, &str, _, archery::shared_pointer::kind::rc::RcK>, fn(&archery::shared_pointer::SharedPointer<map::entry::Entry<&str, {integer}>, archery::shared_pointer::kind::rc::RcK>) -> (&&str, &{integer})>
