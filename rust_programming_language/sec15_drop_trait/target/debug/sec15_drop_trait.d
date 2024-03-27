@@ -1,0 +1,1 @@
+/Users/rainman/github/rust_practice_code/rust_programming_language/sec15_drop_trait/target/debug/sec15_drop_trait: /Users/rainman/github/rust_practice_code/rust_programming_language/sec15_drop_trait/src/main.rs

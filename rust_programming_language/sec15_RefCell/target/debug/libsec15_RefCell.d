@@ -1,0 +1,1 @@
+/Users/rainman/github/rust_practice_code/rust_programming_language/sec15_RefCell/target/debug/libsec15_RefCell.rlib: /Users/rainman/github/rust_practice_code/rust_programming_language/sec15_RefCell/src/lib.rs
