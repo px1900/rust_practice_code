@@ -1,0 +1,1 @@
+/Users/rainman/github/rust_practice_code/rust_programming_language/sec12/target/debug/sec12: /Users/rainman/github/rust_practice_code/rust_programming_language/sec12/src/lib.rs /Users/rainman/github/rust_practice_code/rust_programming_language/sec12/src/main.rs
