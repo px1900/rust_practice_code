@@ -1,0 +1,1 @@
+/Users/rainman/github/rust_practice_code/rust_programming_language/sec16_channel/target/debug/sec16_channel: /Users/rainman/github/rust_practice_code/rust_programming_language/sec16_channel/src/main.rs
