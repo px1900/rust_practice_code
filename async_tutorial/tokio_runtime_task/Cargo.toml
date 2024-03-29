@@ -1,0 +1,11 @@
+workspace = { members = ["tokio_task"] }
+[package]
+name = "tokio_runtime_task"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+#tokio = "1.36.0"
